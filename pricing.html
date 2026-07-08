@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership — Trazy's Academy</title>
+  <meta name="description" content="Purchase your Trazy's Academy membership. Lifetime and premium coaching tiers.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    *,*::before,*::after{box-sizing:border-box;}
+    :root {
+      --gold:#c9a96e; --gold-dim:#a07e50; --gold-glow:rgba(201,169,110,0.12);
+      --surface:#0d0d0d; --surface-2:#141414; --surface-3:#1a1a1a;
+      --border:rgba(255,255,255,0.07); --text-primary:#f0f0f0; --text-muted:#6b6b6b; --text-dim:#9a9a9a;
+    }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--surface); color:var(--text-primary); margin:0; -webkit-font-smoothing:antialiased; }
+    .brand-font { font-family:'Space Grotesk',sans-serif; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(13,13,13,0.85); backdrop-filter:blur(24px) saturate(180%); border-bottom:1px solid var(--border); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
+    .logo-mark { width:34px; height:34px; border-radius:8px; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; letter-spacing:-1px; color:#0d0d0d; }
+    .nav-links { display:flex; gap:2rem; }
+    .nav-links a { font-size:13px; font-weight:500; color:var(--text-muted); text-decoration:none; transition:color .2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--text-primary); }
+    .btn-membership { padding:9px 20px; border-radius:100px; background:var(--gold); color:#0d0d0d; font-size:13px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .2s; }
+    .btn-membership:hover { background:#d4b87a; transform:translateY(-1px); box-shadow:0 8px 24px rgba(201,169,110,0.3); }
+
+    main { padding: 120px 2rem 100px; max-width:1200px; margin:0 auto; }
+    .page-header { text-align:center; margin-bottom:4rem; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:100px; border:1px solid rgba(201,169,110,0.25); background:rgba(201,169,110,0.06); font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+    h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(40px,6vw,72px); font-weight:700; line-height:0.95; letter-spacing:-0.035em; margin:0 0 1.25rem; }
+    h1 .accent { color: var(--gold); }
+    .lede { font-size:16px; color:var(--text-muted); line-height:1.7; max-width:620px; margin:0 auto; }
+
+    .pricing-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; max-width:900px; margin:0 auto; }
+    .pricing-card { background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:2.75rem; transition:all .3s; position:relative; }
+    .pricing-card:hover { border-color:rgba(255,255,255,0.14); }
+    .pricing-card.featured { border-color:rgba(201,169,110,0.35); background:linear-gradient(135deg,var(--surface-2) 0%, rgba(201,169,110,0.05) 100%); }
+    .pricing-card.featured:hover { border-color:rgba(201,169,110,0.55); }
+    .pricing-popular { position:absolute; top:-12px; right:24px; padding:5px 14px; border-radius:100px; background:var(--gold); color:#0d0d0d; font-size:11px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+    .pricing-tier { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.75rem; }
+    .pricing-title { font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; letter-spacing:-0.03em; margin-bottom:0.75rem; }
+    .pricing-price { font-family:'Space Grotesk',sans-serif; font-size:48px; font-weight:700; letter-spacing:-0.04em; margin-bottom:0.25rem; }
+    .pricing-price span { font-size:16px; font-weight:400; color:var(--text-muted); }
+    .pricing-period { font-size:13px; color:var(--text-muted); margin-bottom:2rem; }
+    .pricing-features { list-style:none; padding:0; margin:0 0 2rem; display:flex; flex-direction:column; gap:12px; }
+    .pricing-features li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--text-dim); }
+    .pricing-features li i { color:var(--gold); font-size:12px; margin-top:3px; flex-shrink:0; }
+    .pricing-btn { width:100%; padding:15px; border-radius:14px; font-size:15px; font-weight:700; cursor:pointer; transition:all .2s; display:flex; align-items:center; justify-content:center; gap:8px; border:none; text-decoration:none; }
+    .pricing-btn.outline { background:transparent; border:1px solid var(--border); color:var(--text-primary); }
+    .pricing-btn.outline:hover { border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.03); }
+    .pricing-btn.gold { background:var(--gold); color:#0d0d0d; }
+    .pricing-btn.gold:hover { background:#d4b87a; transform:translateY(-2px); box-shadow:0 8px 32px rgba(201,169,110,0.3); }
+
+    .assurance { text-align:center; margin-top:3rem; font-size:13px; color:var(--text-muted); display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; }
+    .assurance i { color:var(--gold); margin-right:6px; }
+
+    footer { padding:3rem 2rem; border-top:1px solid var(--border); text-align:center; font-size:13px; color:var(--text-muted); }
+    footer a { color:var(--text-muted); text-decoration:none; margin:0 10px; }
+    footer a:hover { color:var(--text-primary); }
+
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .pricing-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit">
+      <div class="logo-mark">TA</div>
+      <div>
+        <div class="brand-font" style="font-size:17px;font-weight:700;letter-spacing:-0.04em;line-height:1">Trazy's Academy</div>
+        <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.1em;margin-top:1px">PRECISION PERFORMANCE</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#trazyee-guide">The Guide</a>
+      <a href="index.html#academy">The Academy</a>
+      <a href="index.html#results">Results</a>
+      <a href="pricing.html" class="active">Pricing</a>
+    </div>
+    <a class="btn-membership" href="#plans"><i class="fa-solid fa-lock"></i> Purchase Membership</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Membership</div>
+    <h1>Choose your <span class="accent">path.</span></h1>
+    <p class="lede">Both tiers include lifetime access to the full curriculum and all future updates. Cancel Premium anytime.</p>
+  </div>
+
+  <div id="plans" class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Standard</div>
+      <div class="pricing-title">Academy Access</div>
+      <div class="pricing-price">$149 <span>/ one-time</span></div>
+      <div class="pricing-period">Lifetime access · No recurring fees</div>
+      <ul class="pricing-features">
+        <li><i class="fa-solid fa-check"></i> All 6 curriculum modules</li>
+        <li><i class="fa-solid fa-check"></i> Video lessons & written guides</li>
+        <li><i class="fa-solid fa-check"></i> Private members-only community</li>
+        <li><i class="fa-solid fa-check"></i> All future content updates</li>
+        <li><i class="fa-solid fa-check"></i> Protocol templates & worksheets</li>
+      </ul>
+      <a class="pricing-btn outline" href="#"><i class="fa-solid fa-lock"></i> Purchase Standard</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-popular">Most Popular</div>
+      <div class="pricing-tier">Premium</div>
+      <div class="pricing-title">Academy + Coaching</div>
+      <div class="pricing-price">$349 <span>/ month</span></div>
+      <div class="pricing-period">Full academy + 1:1 private coaching</div>
+      <ul class="pricing-features">
+        <li><i class="fa-solid fa-check"></i> Everything in Standard</li>
+        <li><i class="fa-solid fa-check"></i> 1:1 coaching with Trazy</li>
+        <li><i class="fa-solid fa-check"></i> Personalized protocol design</li>
+        <li><i class="fa-solid fa-check"></i> Weekly check-ins & adjustments</li>
+        <li><i class="fa-solid fa-check"></i> Priority Q&A access</li>
+        <li><i class="fa-solid fa-check"></i> 24/7 direct messaging</li>
+      </ul>
+      <a class="pricing-btn gold" href="#"><i class="fa-solid fa-lock"></i> Purchase Premium</a>
+    </div>
+  </div>
+
+  <div class="assurance">
+    <div><i class="fa-solid fa-shield-halved"></i> Secure checkout</div>
+    <div><i class="fa-solid fa-rotate-left"></i> Cancel Premium anytime</div>
+    <div><i class="fa-solid fa-lock"></i> Members-only content</div>
+  </div>
+</main>
+
+<footer>
+  <div>© <span id="yr"></span> Trazy's Academy. All rights reserved.</div>
+  <div style="margin-top:8px">
+    <a href="index.html">Home</a>·
+    <a href="index.html#academy">The Academy</a>·
+    <a href="pricing.html">Pricing</a>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
